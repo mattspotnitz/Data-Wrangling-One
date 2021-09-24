@@ -3,19 +3,35 @@ title: "Simple document"
 output: github_document
 ---
 
-I'm an R Markdown document! 
-
-# Section 1
-
-Here's a **code chunk** that samples from 
-a _normal distribution_:
-
-```{r}
-samp = rnorm(100)
-length(samp)
+```{r echo=FALSE, message=FALSE}
+library(tidyverse)
 ```
 
-# Section 2
+##Import some data
+I want to import "FAS-litters.csv"
 
-I can take the mean of the sample, too!
-The mean is `r mean(samp)`.
+```{r}
+litters_df = read_csv("class data/Data/FAS_litters.csv")
+
+```
+Now clean the names
+
+```{r}
+litters_df = janitor::clean_names(litters_df)
+```
+
+Better names. Now let's look at the data set.
+```{r}
+litters_df
+head(litters_df)
+tail(litters_df)
+```
+
+One I use a lot is 
+```{r, eval=FALSE}
+view(litters_df)
+```
+
+```{r, eval=FALSE}
+skimr::skim(litters_df)
+```
